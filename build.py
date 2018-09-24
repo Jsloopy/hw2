@@ -1,25 +1,4 @@
-
-# def main():
-#     top= open("templates/top.html").read()
-#     content= open("content/bio1.html").read()
-#     bottom= open("templates/bottom.html").read()
-
-# def main():
-#     top= open("templates/top.html").read()
-#     content= open("content/homepage1.html").read()
-#     bottom= open("templates/bottom.html").read()
-
-# def main():
-#     top= open("templates/top.html").read()
-#     content= open("content/contact1.html").read()
-#     bottom= open("templates/bottom.html").read()
-
-# def main():
-#     top= open("templates/top.html").read()
-#     content= open("content/resume1.html").read()
-#     bottom= open("templates/bottom.html").read()
-
-
+#2.1-2.2
 pages = [
     {
         "filename" : "content/homepage1.html",
@@ -54,3 +33,11 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#2.3 string replacement 
+def meain():
+    for value in pages:
+        template = open("templates/base.html").read()
+        content = open(value["filename"]).read()
+        homepage_html= template.replace("{{content}}", content)
+        open(value["output"], 'w+').write(homepage_html)
