@@ -1,4 +1,6 @@
-#2.1-2.2
+#2.1-
+
+# 2.2
 pages = [
     {
         "filename" : "content/homepage1.html",
@@ -65,7 +67,7 @@ def apply_template(value, title):
     template = open("templates/base.html").read()
     index_html = template.replace("{{content}}", value)
     title_replace = index_html.replace("{{my_blog}}", title)
-    return (index_html)
+    return (title_replace)
 
 def main():
     for value in pages:
