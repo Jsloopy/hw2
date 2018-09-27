@@ -1,6 +1,13 @@
 #2.1-
+# def main():
+# #     for value in pages:
+# #       top_template = open('templates/top.html').read()
+#         bottom_template = open('templates/bottom.html').read()
+#         content = open(content/homepage1.html).read()
+#         homepage_html = top_template + content + bottom_template
+#         open(value["output"], 'w+').write(homepage_html)
 
-# 2.2
+
 pages = [
     {
         "filename" : "content/homepage1.html",
@@ -23,6 +30,8 @@ pages = [
         "title" : "Contact Me", 
     },
 ]
+
+# 2.2
 # def main():
 #     for value in pages:
 #         top_template = open('templates/top.html').read()
