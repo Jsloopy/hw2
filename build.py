@@ -2,12 +2,12 @@
 pages = [
     {
         "filename" : "content/homepage1.html",
-        "output" : "docs/homepage3.html",
+        "output" : "docs/homepage.html",
         "title" : "My Homepage",
     },
     {
         "filename" : "content/bio1.html",
-        "output" : "docs/bio3.html",
+        "output" : "docs/bio.html",
         "title" : "Bio",
     },
     {
@@ -44,23 +44,38 @@ pages = [
 
 
 
-# # # #2.4 Function refactor
+# # # # #2.4 Function refactor
 
-def apply_template(value):
+# def apply_template(value):
+#     template = open("templates/base.html").read()
+#     index_html= template.replace("{{content}}", value)
+#     return (index_html)
+
+# def main():
+#     for value in pages:
+#         content = open(value["filename"]).read()
+#         resulting_html_for_index = apply_template(content)
+#         open(value["output"], "w+").write(resulting_html_for_index)
+    
+
+# # # # #2.5- advanced templating
+
+
+def apply_template(value, title):
     template = open("templates/base.html").read()
-    # print(value)
-    index_html= template.replace("{{content}}", value)
+    index_html = template.replace("{{content}}", value)
+    title_replace = index_html.replace("{{my_blog}}", title)
     return (index_html)
 
 def main():
     for value in pages:
         content = open(value["filename"]).read()
-        #content = open('content/homepage1.html').read()
-        resulting_html_for_index = apply_template(content)
-        print("////////////////////////////")
-        print(resulting_html_for_index)
+        title = value["title"]
+        resulting_html_for_index = apply_template(content, title)
         open(value["output"], "w+").write(resulting_html_for_index)
-    
+
+
+
 
 if __name__ == "__main__":
     main()
