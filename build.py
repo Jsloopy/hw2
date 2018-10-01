@@ -69,31 +69,26 @@
 #         open(value["output"], "w+").write(resulting_html_for_index)
     
 
-# # # # # Start of homework 4
+#START OF HOMEWORK4
 
 # HMWRK4 2.1
 
-#this grabs all of the content files
+# #this grabs all of the content files
 import glob
 import os
 all_html_files = glob.glob("content/*.html")
-print(all_html_files)
+# print(all_html_files)
 
-# #this grabs the name only of the output docs. USe for grabbing titles 
 
-file_path = "content/blog.html"
+# file_path = "content/blog.html"
 
 
 pages = []
 def html_output():
     for each in all_html_files:
-        print(each)
         file_name = os.path.basename(each)
-        print(file_name)
         name_only, extension = os.path.splitext(file_name)
-        print(name_only)
         output = 'docs/' + name_only + '.html'
-        print(output)
 
         pages.append({
             "filename": each ,
@@ -103,23 +98,50 @@ def html_output():
     
 
 html_output()
-print(pages)
+# print(pages)
 
-def apply_template(value, title):
-    template = open("templates/base.html").read()
-    index_html = template.replace("{{content}}", value)
-    title_replace = index_html.replace("{{my_blog}}", title)
-    return (title_replace)
+# def apply_template(value, title):
+#     template = open("templates/base.html").read()
+#     index_html = template.replace("{{content}}", value)
+#     title_replace = index_html.replace("{{my_blog}}", title)
+#     return (title_replace)
 
-def main():
-    for value in pages:
-        content = open(value["filename"]).read()
-        title = value["title"]
-        resulting_html_for_index = apply_template(content, title)
-        open(value["output"], "w+").write(resulting_html_for_index)
-
-
+# def main():
+#     for value in pages:
+#         content = open(value["filename"]).read()
+#         title = value["title"]
+#         resulting_html_for_index = apply_template(content, title)
+#         open(value["output"], "w+").write(resulting_html_for_index)
 
 
-if __name__ == "__main__":
-    main()
+
+
+# if __name__ == "__main__":
+#     main()
+
+#phase 2.2
+
+from jinja2 import Template
+
+def apply_template():
+    for page in pages:
+        # print(page) 
+        index_html = open(page["filename"]).read()
+        template_html = open("templates/base.html").read()
+        template = Template(template_html)
+        # print(template)
+        output = template.render(
+            title=page['title'],
+            content=index_html,
+            )
+        open(page["output"], "w+").write(output)
+
+apply_template()
+
+
+
+
+
+
+
+
