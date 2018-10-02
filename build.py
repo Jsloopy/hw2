@@ -1,3 +1,5 @@
+from jinja2 import Template
+
 #2.1-
 # def main():
 # #     for value in pages:
@@ -77,7 +79,8 @@
 import glob
 import os
 all_html_files = glob.glob("content/*.html")
-# print(all_html_files)
+
+
 
 
 # file_path = "content/blog.html"
@@ -86,19 +89,23 @@ all_html_files = glob.glob("content/*.html")
 pages = []
 def html_output():
     for each in all_html_files:
+        print(each)
         file_name = os.path.basename(each)
         name_only, extension = os.path.splitext(file_name)
-        output = 'docs/' + name_only + '.html'
+        # output = 'docs/' + name_only + '.html'
 
         pages.append({
-            "filename": each ,
+            "filename": each,
             "title": name_only,
-            "output": output,
+            # "filename": file_name,
+            "output": "docs/" + name_only + '.html',
+            "link": name_only + '.html',
+            "output_filepath": 'docs/' + name_only + '.html'
         }) 
     
 
 html_output()
-# print(pages)
+
 
 # def apply_template(value, title):
 #     template = open("templates/base.html").read()
@@ -121,27 +128,25 @@ html_output()
 
 #phase 2.2
 
-from jinja2 import Template
 
 def apply_template():
     for page in pages:
         # print(page) 
-        index_html = open(page["filename"]).read()
+        index_html = open(page['filename']).read()
         template_html = open("templates/base.html").read()
         template = Template(template_html)
         # print(template)
-        output = template.render(
+        page_output = template.render(
             title=page['title'],
             content=index_html,
+            pages=pages,
             )
-        open(page["output"], "w+").write(output)
-
+        open(page["output"], "w+").write(page_output)
+        print('heloooooooo', page["output"])
 apply_template()
 
 
-
-
-
+#phase 2.3
 
 
 
