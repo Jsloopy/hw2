@@ -89,7 +89,7 @@ all_html_files = glob.glob("content/*.html")
 pages = []
 def html_output():
     for each in all_html_files:
-        print(each)
+        # print(each)
         file_name = os.path.basename(each)
         name_only, extension = os.path.splitext(file_name)
         # output = 'docs/' + name_only + '.html'
@@ -142,7 +142,7 @@ def apply_template():
             pages=pages,
             )
         open(page["output"], "w+").write(page_output)
-        print('heloooooooo', page["output"])
+        
 apply_template()
 
 
