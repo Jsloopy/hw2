@@ -43,16 +43,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
+
             {% for page in pages %}
-              <li class="nav-item mx-0 mx-lg-1">
+              {% if checker == page.link %}
+              *<li class="nav-item mx-0 mx-lg-1">
                 <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ page.link }}">{{ page.title }}</a>
               </li>
+              {% else %}
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{ page.link }}">{{ page.title }}</a>
+                 </li>
+                 {% endif %}
             {% endfor %}
           </ul>
         </div>
       </div>
     </nav>
-        <!-- Resume Section -->
+        <!-- Content Section Starts -->
     <section class="bg-primary text-white mb-0" id="about" id="resume_spacing">
       <div class="container">
 
