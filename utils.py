@@ -1,9 +1,10 @@
+
 from jinja2 import Template
 import glob
 import os
+import sys 
+
 all_html_files = glob.glob("content/*.html")
-
-
 
 pages = []
 def html_output():
@@ -21,7 +22,6 @@ def html_output():
         }) 
     
 
-html_output()
 
 
 def apply_template():
@@ -33,16 +33,7 @@ def apply_template():
             title=page['title'],
             content=index_html,
             pages=pages,
+            checker=page['link'],
             )
         open(page["output"], "w+").write(page_output)
         
-apply_template()
-
-
-
-
-
-
-
-
-
